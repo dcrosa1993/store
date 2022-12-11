@@ -1,0 +1,8 @@
+<div
+  *ngIf="product as p"
+  class="flex flex-col w-[200px] h-[300px] border-gray-300 shadow hover:border-gray-500 hover:shadow-lg gap-2 p-1 hover:bg-gray-100 bg-gray-50 rounded-md"
+  [routerLink]="p.id"
+>
+  <img [src]="p.img" class="h-[196px] w-[196px] rounded-full" />
+  <h1>{{ p.name }}</h1>
+</div>

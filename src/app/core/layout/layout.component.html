@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<mat-drawer-container
+  class="absolute top-25 h-[calc(100vh-100px)] w-full overflow-y-auto"
+>
+  <mat-drawer
+    #drawer
+    class="max-w-[60px] md:max-w-[256px] w-full"
+    mode="side"
+    [opened]="true"
+  >
+    <app-side-menu></app-side-menu>
+  </mat-drawer>
+
+  <mat-drawer-content class="px-6 py-4">
+    <div class="w-full h-full"><router-outlet></router-outlet></div>
+  </mat-drawer-content>
+</mat-drawer-container>
