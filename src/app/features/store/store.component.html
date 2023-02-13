@@ -1,3 +1,15 @@
-<div class="flex flex-wrap w-full h-full justify-center items-top gap-5">
-  <app-product *ngFor="let item of products" [product]="item"></app-product>
+<div class="flex flex-col w-full h-full items-center">
+  <app-error-msg
+    *ngIf="!(loading$ | async) && (error$ | async) as error"
+    [error]="error"
+  >
+  </app-error-msg>
+
+  <app-loading-bar *ngIf="loading$ | async"></app-loading-bar>
+  <div
+    class="flex flex-wrap w-full h-full justify-center items-top gap-5"
+    *ngIf="success$ | async as items"
+  >
+    <app-product *ngFor="let item of items" [product]="item"></app-product>
+  </div>
 </div>
