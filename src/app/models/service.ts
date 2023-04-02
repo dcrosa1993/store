@@ -6,7 +6,7 @@ export type Service = {
   maxOrder: string;
   speed: string;
   price: string;
-  availablee: boolean;
+  available: boolean;
   orders: string[];
   createdBy: string;
   updatedBy: string;

@@ -1,33 +1,35 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   exhaustMap,
   map,
   merge,
   Observable,
   partition,
+  ReplaySubject,
   shareReplay,
   Subject,
   tap,
 } from 'rxjs';
-
+import { Service } from 'src/app/models/service';
 import { Result, SignInCredentials } from 'src/app/shared/models/exports';
-import { AccountService } from './account-service/account.service';
-import { LoggingService } from './logging/loggin.service';
-
-@Injectable()
-export class SignInService implements OnDestroy {
+import { LoggingService } from '../logging/loggin.service';
+import { StoreServiceService } from './store-service.service';
+@Injectable({
+  providedIn: 'root',
+})
+export class GetOneServiceService {
   public error$: Observable<string>;
   public loading$: Observable<boolean>;
-  public result$: Observable<Result<string>>;
-  private _submit: Subject<SignInCredentials> = new Subject();
-  public success$: Observable<string>;
+  public result$: Observable<Result<Service>>;
+  private _submit: ReplaySubject<string> = new ReplaySubject();
+  public success$: Observable<Service>;
 
   constructor(
-    private _accountService: AccountService,
+    private _logic: StoreServiceService,
     private _logger: LoggingService
   ) {
     this.result$ = this._submit.pipe(
-      exhaustMap((data) => this._accountService.signIn(data)),
+      exhaustMap((data) => this._logic.getOneServices(data)),
       shareReplay(1)
     );
 
@@ -69,7 +71,7 @@ export class SignInService implements OnDestroy {
    * This method begins a user's authentication process.
    * @param value SignInCredentials type object, contains email and password data provided by the user.
    */
-  requestSignIn(value: SignInCredentials) {
-    this._submit.next(value);
+  getOneServices(id: string) {
+    this._submit.next(id);
   }
 }

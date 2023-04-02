@@ -12,6 +12,7 @@ import {
   ReplaySubject,
   throwError,
 } from 'rxjs';
+import { SignUpCredentials } from 'src/app/shared/models/auth/sign-up-credentials';
 
 import { Result, SignInCredentials } from 'src/app/shared/models/exports';
 import { environment } from 'src/environments/environment';
@@ -26,47 +27,38 @@ export class AccountService {
   public isAuthenticated$: Observable<boolean> =
     this.isAuthenticatedController.asObservable();
   private url: string = environment.url;
-  constructor(private _http: HttpClient) {}
-  /*
-  public signUp(data: SignUpCredentials): Observable<Result<string>> {
-    return from(
-      Auth.signUp({
-        username: data.email.replace(/[^a-zA-Z0-9]/g, ''),
-        password: data.password,
-        attributes: {
-          given_name: data.firstName,
-          family_name: data.lastName,
-          email: data.email,
-          address: JSON.stringify({
-            address: data.address,
-            state: data.state,
-            aptNumber: data.aptNumber,
-            zipCode: data.zipCode,
-          }),
-        },
-      })
-        .then(function (data) {
-          return { result: 'SUCCESS' };
-        })
-        .catch(function (error) {
-          return { error: error.message };
-        })
-    );
+  constructor(private _http: HttpClient) {
+    localStorage.getItem('id_token')
+      ? this.isAuthenticatedController.next(true)
+      : this.isAuthenticatedController.next(false);
   }
-*/
+
+  public signUp(data: SignUpCredentials): Observable<Result<string>> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8;');
+    headers.append('Access-Control-Allow-Origin', '*');
+    return this._http
+      .post(this.url + 'register', data, { headers: headers })
+      .pipe(
+        map((data: any) => {
+          this.signIn({ email: data.email, password: data.password });
+          return { result: data as string };
+        }),
+        catchError((error) => of({ error: error.error.detail }))
+      );
+  }
+
   public signIn(data: SignInCredentials): Observable<Result<string>> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8;');
     headers.append('Access-Control-Allow-Origin', '*');
     return this._http.post(this.url + 'login', data, { headers: headers }).pipe(
       map((data: any) => {
-        if (data.status == 500) {
-          return { error: data.detail };
-        } else {
-          localStorage.setItem('id_token', data as string);
-          return { result: data as string };
-        }
-      })
+        localStorage.setItem('id_token', data as string);
+        this.isAuthenticatedController.next(true);
+        return { result: data as string };
+      }),
+      catchError((error) => of({ error: error.error.detail }))
     );
 
     /*
@@ -83,6 +75,11 @@ export class AccountService {
     */
   }
 
+  public signOut(): Observable<Result<string>> {
+    localStorage.removeItem('id_token');
+    this.isAuthenticatedController.next(false);
+    return of({ result: 'success' });
+  }
   /*
   public changePassword(data: ChangePasswordData): Observable<Result<string>> {
     return from(
