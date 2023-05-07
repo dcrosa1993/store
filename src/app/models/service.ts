@@ -1,3 +1,5 @@
+import { Order } from './order';
+
 export type Service = {
   id: string;
   name: string;
@@ -7,7 +9,5 @@ export type Service = {
   speed: string;
   price: string;
   available: boolean;
-  orders: string[];
-  createdBy: string;
-  updatedBy: string;
+  orders: Order[];
 };

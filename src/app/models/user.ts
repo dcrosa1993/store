@@ -4,7 +4,5 @@ export type User = {
   baned: boolean;
   name: string;
   email: string;
-  role: string;
-  createdBy: string;
-  updatedBy: string;
+  role: 'Administrator' | 'Standard';
 };

@@ -7,9 +7,7 @@ export const user: User = {
   baned: false,
   name: 'Fulano',
   email: 'fulano@gmail.com',
-  role: 'client',
-  createdBy: '02/02/2022',
-  updatedBy: '02/02/2022',
+  role: 'Standard',
 };
 export const userInput: UserInput = {
   password: '123',
@@ -25,9 +23,7 @@ export const users: User[] = [
     baned: false,
     name: 'Fulano',
     email: 'fulano@gmail.com',
-    role: 'client',
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
+    role: 'Standard',
   },
   {
     password: '123',
@@ -35,9 +31,7 @@ export const users: User[] = [
     baned: false,
     name: 'Fulano',
     email: 'fulano@gmail.com',
-    role: 'client',
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
+    role: 'Standard',
   },
   {
     password: '123',
@@ -45,8 +39,6 @@ export const users: User[] = [
     baned: false,
     name: 'Fulano',
     email: 'fulano@gmail.com',
-    role: 'client',
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
+    role: 'Standard',
   },
 ];

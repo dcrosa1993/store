@@ -6,6 +6,4 @@ export type Order = {
   service: Service;
   user: User;
   status: 'pendign' | 'complete' | 'failed';
-  createdBy: string;
-  updatedBy: string;
 };

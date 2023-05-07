@@ -11,8 +11,6 @@ export const service: Service = {
   price: '$150.00',
   available: true,
   orders: [],
-  createdBy: '02/02/2022',
-  updatedBy: '02/02/2022',
 };
 export const serviceInput: ServiceInput = {
   name: 'Example',
@@ -34,8 +32,6 @@ export const services: Service[] = [
     price: '$150.00',
     available: true,
     orders: [],
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
   },
   {
     id: '2',
@@ -47,8 +43,6 @@ export const services: Service[] = [
     price: '$150.00',
     available: true,
     orders: [],
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
   },
   {
     id: '3',
@@ -60,7 +54,5 @@ export const services: Service[] = [
     price: '$150.00',
     available: true,
     orders: [],
-    createdBy: '02/02/2022',
-    updatedBy: '02/02/2022',
   },
 ];

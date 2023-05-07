@@ -2,5 +2,15 @@
   class="flex flex-row justify-between items-center bg-blue-300 w-full h-[100px] px-6"
 >
   <h1>Logo</h1>
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+    Demo
+  </button>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item [routerLink]="'/store'">Tienda</a>
+    <a mat-menu-item [routerLink]="'/auth/login'">Sign-In</a>
+    <a mat-menu-item [routerLink]="'/auth/register'">Sing-Up</a>
+    <a mat-menu-item [routerLink]="'/admin/services'">Administrar Servicios</a>
+    <a mat-menu-item [routerLink]="'/admin/users'">Administrar Usuarios</a>
+  </mat-menu>
   <app-sign-out></app-sign-out>
 </div>

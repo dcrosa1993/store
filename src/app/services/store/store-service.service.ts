@@ -14,7 +14,6 @@ export class StoreServiceService {
   private url: string = environment.url;
 
   getAllServices(): Observable<Result<Service[]>> {
-    /*
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8;');
     headers.append('Access-Control-Allow-Origin', '*');
@@ -26,12 +25,11 @@ export class StoreServiceService {
           return { result: data as Service[] };
         }
       })
-    );*/
-    return of({ result: services });
+    );
+    //return of({ result: services });
   }
 
   getOneServices(id: string): Observable<Result<Service>> {
-    /*
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8;');
     headers.append('Access-Control-Allow-Origin', '*');
@@ -46,12 +44,11 @@ export class StoreServiceService {
           }
         })
       );
-      */
-    return of({ result: service });
+
+    //return of({ result: service });
   }
 
   addService(data: ServiceInput): Observable<Result<Service>> {
-    /*
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8;');
     headers.append('Access-Control-Allow-Origin', '*');
@@ -66,15 +63,14 @@ export class StoreServiceService {
           }
         })
       );
-      */
-    return of({ result: service });
+
+    //return of({ result: service });
   }
 
   editService(data: {
     data: ServiceInput;
     id: string;
   }): Observable<Result<Service>> {
-    /*
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8;');
     headers.append('Access-Control-Allow-Origin', '*');
@@ -89,7 +85,7 @@ export class StoreServiceService {
           }
         })
       );
-        */
-    return of({ result: service });
+
+    //return of({ result: service });
   }
 }
